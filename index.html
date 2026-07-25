@@ -3,37 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turkish Panel - Mernis King</title>
+    <title>Mernis King - Kullanıcı Paneli</title>
     <style>
         body {
             background: #0a0a0a;
             color: #00ff00;
             font-family: 'Courier New', monospace;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 30px;
         }
         h1 {
-            font-size: 48px;
+            font-size: 42px;
             color: red;
             text-shadow: 0 0 20px red;
+            margin-bottom: 5px;
         }
         .subtitle {
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 30px;
-        }
-        .subtitle del {
-            color: red;
-            text-decoration: line-through;
-        }
-        .subtitle strong {
-            color: lime;
         }
         .panel {
             border: 2px solid #00ff00;
-            width: 400px;
-            margin: 30px auto;
+            width: 450px;
+            margin: 20px auto;
             padding: 20px;
             text-align: left;
+            background: #0f0f0f;
         }
         .panel input {
             width: 100%;
@@ -53,27 +48,105 @@
             cursor: pointer;
         }
         .footer {
-            margin-top: 40px;
-            font-size: 12px;
+            margin-top: 30px;
+            font-size: 11px;
             color: gray;
+        }
+        .leak {
+            color: #888;
+            font-size: 12px;
+            margin: 10px auto;
+            width: 500px;
+            text-align: left;
+            border: 1px dashed #444;
+            padding: 8px;
+        }
+        .ph42-tag {
+            font-size: 18px;
+            color: yellow;
+            text-shadow: 0 0 10px yellow;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #00ff00;
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background: #330000;
+            color: red;
+        }
+        .notice {
+            color: red;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        .spoiler {
+            color: yellow;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Hacked by PH42</h1>
-    <div class="subtitle">
-        Turkish Panel - <del>Belsis.xyz</del> <strong>Mernis King</strong>
+    <h1>Mernis King</h1>
+    <div class="subtitle">Kullanıcı Doğrulama Sistemi v2.1</div>
+
+    <!-- Uyarı: SQL hata mesajı sızdırılmış -->
+    <div class="leak">
+        <b>Sistem Mesajı (DEBUG):</b><br>
+        <span style="color:red;">MySQL Error: Table 'mernis.users' doesn't exist</span><br>
+        <span style="color:yellow;">SELECT * FROM users WHERE id = '1'</span>
     </div>
 
+    <!-- Arama formu (SQLi'ye müsait gibi) -->
     <div class="panel">
-        <p><b>Admin Login</b></p>
-        <input type="text" placeholder="Kullanıcı Adı" value="admin" disabled>
-        <input type="password" placeholder="Şifre" value="********" disabled>
-        <button disabled>Giriş Yap</button>
+        <b>Kullanıcı Sorgula</b>
+        <form method="GET" action="#">
+            <input type="text" name="id" placeholder="TC Kimlik No veya ID girin..." value="1">
+            <button type="submit">Sorgula</button>
+        </form>
+        <div class="notice">! Uyarı: Bu form geliştirme aşamasındadır. Girdi temizleme yapılmamıştır.</div>
+        
+        <!-- Sahte sonuçlar -->
+        <table>
+            <tr><th>ID</th><th>Ad Soyad</th><th>TC No</th><th>Şifre (Hash)</th></tr>
+            <tr><td>1</td><td>Ali Yılmaz</td><td>12345678901</td><td>5f4dcc3b5aa765d61d8327deb882cf99</td></tr>
+            <tr><td>2</td><td>Ayşe Demir</td><td>10987654321</td><td>e10adc3949ba59abbe56e057f20f883e</td></tr>
+            <tr><td>3</td><td>Mehmet Kaya</td><td>10234567890</td><td>25d55ad283aa400af464c76d713c07ad</td></tr>
+        </table>
+    </div>
+
+    <!-- Açık yedek dosyaları -->
+    <div class="leak" style="margin-top:15px;">
+        <b>Dizin:</b> /var/www/backup/<br>
+        <a href="#" style="color:yellow;" onclick="alert('Dosya bulunamadı: backup_2025.sql')">backup_2025.sql</a> (2.4 MB)<br>
+        <a href="#" style="color:yellow;" onclick="alert('Dosya bulunamadı: config.php.bak')">config.php.bak</a> (1.1 KB)
+    </div>
+
+    <!-- Admin girişi -->
+    <div class="panel">
+        <b>Admin Girişi</b>
+        <form method="POST" action="#">
+            <input type="text" name="username" placeholder="Kullanıcı adı" value="admin">
+            <input type="password" name="password" placeholder="Şifre" value="admin123">
+            <button type="submit">Giriş</button>
+        </form>
+        <div class="spoiler">Varsayılan bilgiler: admin / admin123</div>
+    </div>
+
+    <!-- Hacklenmiş izi -->
+    <div class="ph42-tag">
+        <span style="color:lime;">[!] Sistem daha önce hacklenmiştir.</span><br>
+        <span style="color:red;">Hacked by PH42</span> | <span style="color:yellow;">Mernis King</span>
     </div>
 
     <div class="footer">
-        PH42 WAS HERE | Turkish Power | Mernis King
+        Mernis King © 2025 | Tüm hakları saklıdır. | Bu site bir güvenlik test simülasyonudur.
     </div>
 </body>
 </html>
